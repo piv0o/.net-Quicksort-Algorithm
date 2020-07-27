@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Sorting_Algorithm
 {
@@ -7,12 +8,9 @@ namespace Sorting_Algorithm
     {
         static void Main(string[] args)
         {
-            List<int> randomList = CreateList(10);
-            Console.WriteLine(string.Join(", ",randomList));
-            List<int> sortedList = QuickSort(randomList,0,randomList.Count-1);
-            Console.WriteLine(string.Join(", ", sortedList));
-            Console.ReadLine();
+            Initialize();
         }
+
 
         private static List<int> QuickSort(List<int> list, int low, int high)
         {
@@ -42,8 +40,7 @@ namespace Sorting_Algorithm
             int pivot = list[GetPivotIndex((low + high) / 2)];
             int i = low;
             int j = high;
-
-            while(i <= j)
+            while (i <= j)
             {
                 while(list[i] < pivot)
                 {
@@ -54,8 +51,7 @@ namespace Sorting_Algorithm
                 {
                     j--;
                 }
-
-                if(i <= j)
+                if (i <= j)
                 {
                     list = Swap(list, i, j);
                     i++;
@@ -67,15 +63,19 @@ namespace Sorting_Algorithm
 
         private static List<int> Swap(List<int> list, int index1, int index2)
         {
-            Console.WriteLine("index: "+index1.ToString()+", "+ index2.ToString()+", "+list.Count.ToString());
+            if(index1 == index2)
+            {
+                return list;
+            }
             int firstElement = list[index1];
-            int secondElement = list[index2];
-
             list.RemoveAt(index1);
+
+            int secondElement = list[index2-1];
             list.RemoveAt(index2-1);
 
             list.Insert(index1, secondElement);
             list.Insert(index2, firstElement);
+
             return list;
         }
 
@@ -88,15 +88,30 @@ namespace Sorting_Algorithm
         {
             List<int> list = new List<int>();
             var rand = new Random();
-            list.Add(rand.Next(0,100));
-            list.Add(rand.Next(0,100));
-            list.Add(rand.Next(0,100));
-            list.Add(rand.Next(0,100));
-            list.Add(rand.Next(0,100));
-            list.Add(rand.Next(0,100));
-            list.Add(rand.Next(0,100));
-            list.Add(rand.Next(0,100));
+
+            for(int i = 0; i < v; i++)
+            {
+                list.Add(rand.Next(0, 100));
+            }
+           
             return list;
+        }
+
+        private static void Initialize()
+        {
+            var stopwatch = new Stopwatch();
+            Console.WriteLine("Please Input the ammount of entries into the list you wish to sort.");
+            int input = Convert.ToInt32(Console.ReadLine());
+
+            List<int> randomList = CreateList(input);
+            Console.WriteLine("{ " + string.Join(", ", randomList) + " }");
+            stopwatch.Start();
+            List<int> sortedList = QuickSort(randomList, 0, randomList.Count - 1);
+            stopwatch.Stop();
+            Console.WriteLine("{ " + string.Join(", ", sortedList) + " }");
+            Console.WriteLine("Function performed sort in " + stopwatch.ElapsedMilliseconds.ToString() + "ms");
+            Console.WriteLine("Please press enter to exit the program...");
+            Console.ReadLine();
         }
     }
 }

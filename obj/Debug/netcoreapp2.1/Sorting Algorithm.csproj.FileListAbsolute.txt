@@ -1,0 +1,4 @@
+E:\Workspace\C#\Sorting Algorithm\obj\Debug\netcoreapp2.1\Sorting Algorithm.csprojAssemblyReference.cache
+E:\Workspace\C#\Sorting Algorithm\obj\Debug\netcoreapp2.1\Sorting Algorithm.csproj.CoreCompileInputs.cache
+E:\Workspace\C#\Sorting Algorithm\obj\Debug\netcoreapp2.1\Sorting Algorithm.AssemblyInfoInputs.cache
+E:\Workspace\C#\Sorting Algorithm\obj\Debug\netcoreapp2.1\Sorting Algorithm.AssemblyInfo.cs
